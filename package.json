@@ -4,8 +4,8 @@
   "description": "Projeto final do Módula 4 Resilia",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JoaoLucasAl/API-Farmacia.git"
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/JoaoLucasAl/API-Farmacia/issues"
   },
-  "homepage": "https://github.com/JoaoLucasAl/API-Farmacia#readme"
+  "homepage": "https://github.com/JoaoLucasAl/API-Farmacia#readme",
+  "devDependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
 }
