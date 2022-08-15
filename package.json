@@ -1,0 +1,19 @@
+{
+  "name": "api-farmacia",
+  "version": "1.0.0",
+  "description": "Projeto final do Módula 4 Resilia",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoLucasAl/API-Farmacia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoaoLucasAl/API-Farmacia/issues"
+  },
+  "homepage": "https://github.com/JoaoLucasAl/API-Farmacia#readme"
+}
