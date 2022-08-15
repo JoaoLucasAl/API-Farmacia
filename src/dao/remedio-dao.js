@@ -1,3 +1,5 @@
+// Remedio-DAO concluido
+
 class Remedios {
   constructor(bd) {
     this.bd = bd;
