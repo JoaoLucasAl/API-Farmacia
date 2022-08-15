@@ -1,3 +1,5 @@
+// Funcionario-DAO concluido
+
 class Funcionarios {
   constructor(bd) {
     this.bd = bd;
