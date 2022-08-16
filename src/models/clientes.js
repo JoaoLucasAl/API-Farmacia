@@ -1,5 +1,8 @@
+import {v4 as uuid } from 'uuid' 
+
 class ClientesM {
     constructor(nome, email, telefone, cpf ) {
+        this.ID = uuid()
         this.NOME = nome;
         this.EMAIL = email;
         this.TELEFONE = telefone;
