@@ -19,6 +19,24 @@ function RemediosController(app, bd) {
     }
   });
 
+  app.post("/remedios", async (req, res) => {
+    try {
+      const { NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE } = req.body;
+
+      let remedio = new RemediosM(NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE);
+
+      let resposta = await DaoRmd.addRemedios(remedio);
+      
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
 }
 
 export default RemediosController

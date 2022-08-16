@@ -29,8 +29,8 @@ class FuncionariosD {
 
   addFuncionario(funcionario) {
     return new Promise((resolve, reject) => {
-      const query = `INSERT INTO FUNCIONARIOS (NOME, EMAIL, TELEFONE, CARGO, CPF)
-             VALUES (?,?,?,?,?)`;
+      const query = `INSERT INTO FUNCIONARIOS (ID, NOME, EMAIL, TELEFONE, CARGO, CPF)
+             VALUES (?,?,?,?,?,?)`;
 
       let obj = Object.values(funcionario);
       this.bd.run(query, obj, (error) => {

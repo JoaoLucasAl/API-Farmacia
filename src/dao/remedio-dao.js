@@ -29,13 +29,13 @@ class RemediosD {
 
   addRemedios(remedio) {
     return new Promise((resolve, reject) => {
-      const query = `INSERT INTO REMEDIOS (NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE)
-               VALUES (?,?,?,?,?)`;
+      const query = `INSERT INTO REMEDIOS (ID, NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE)
+               VALUES (?,?,?,?,?,?)`;
 
       let obj = Object.values(remedio);
       this.bd.run(query, obj, (error) => {
-        if (error) reject(`Erro ao adicionar novo Funcionário. ${error}`);
-        else resolve(`Novo funcionário adicionando com sucesso ao BD.`);
+        if (error) reject(`Erro ao adicionar novo remédio. ${error}`);
+        else resolve(`Novo remédio adicionando com sucesso ao BD.`);
       });
     });
   }
@@ -46,8 +46,8 @@ class RemediosD {
 
       this.bd.run(query, id, (error) => {
         if (error)
-          reject(`Erro ao deletar o usuário de ID:${id}, error:${error}`);
-        else resolve(`Usuário com ID:${id} deletado com sucesso`);
+          reject(`Erro ao deletar o remédio de ID:${id}, error:${error}`);
+        else resolve(`Remédio com ID:${id} deletado com sucesso`);
       });
     });
   }
@@ -60,7 +60,7 @@ class RemediosD {
       this.bd.run(query, patch, (error) => {
         if (error)
           reject(
-            `Erro ao fazer a atualização dos dados do Funcionario. ${error}.`
+            `Erro ao fazer a atualização dos dados do Remédio. ${error}.`
           );
         else resolve(`Atualização realizada com sucesso.`);
       });
