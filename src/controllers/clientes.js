@@ -1,14 +1,14 @@
-import FuncionariosM from "../models/funcionarios.js";
-import FuncionariosD from "../dao/funcionario-dao.js";
+import ClientesM from "../models/clientes.js";
+import ClientesD from "../dao/clientes-dao.js";
 
 // PUT não está funcionando
-function FuncionarioController(app, bd) {
-  let DaoFunc = new FuncionariosD(bd);
+function ClienteController(app, bd) {
+  let DaoFunc = new ClientesD(bd);
 
   //rota que busca todos funcionários
-  app.get("/funcionarios", async (req, res) => {
+  app.get("/clientes", async (req, res) => {
     try {
-      const resposta = await DaoFunc.verFuncionarios();
+      const resposta = await DaoFunc.verClientes();
       res.json({
         result: resposta,
         countBd: resposta.length,
@@ -22,11 +22,11 @@ function FuncionarioController(app, bd) {
   });
 
   //rota que busca o funcionário a partir do ID
-  app.get("/funcionarios/:ID", async (req, res) => {
+  app.get("/clientes/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
 
-      const resposta = await DaoFunc.verFuncionarioById(id);
+      const resposta = await DaoFunc.verClienteById(id);
       res.json({
         result: resposta,
         error: false,
@@ -39,13 +39,13 @@ function FuncionarioController(app, bd) {
   });
 
   //rota que cria o cadastro de um novo funcionario
-  app.post("/funcionarios", async (req, res) => {
+  app.post("/clientes", async (req, res) => {
     try {
-      const { NOME, EMAIL, TELEFONE, CARGO, CPF } = req.body;
+      const { NOME, EMAIL, TELEFONE, CPF } = req.body;
 
-      let funcionario = new FuncionariosM(NOME, EMAIL, TELEFONE, CARGO, CPF);
+      let cliente = new ClientesM(NOME, EMAIL, TELEFONE, CPF);
 
-      let resposta = await DaoFunc.addFuncionario(funcionario);
+      let resposta = await DaoFunc.addClientes(cliente);
       res.json({
         result: resposta,
       });
@@ -57,10 +57,10 @@ function FuncionarioController(app, bd) {
   });
 
   //rota que deleta um funcionário pelo ID
-  app.delete("/funcionarios/:ID", async (req, res) => {
+  app.delete("/clientes/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
-      const resposta = await DaoFunc.deleteFuncionario(id);
+      const resposta = await DaoFunc.deleteCliente(id);
 
       res.json({
         result: resposta,
@@ -72,13 +72,13 @@ function FuncionarioController(app, bd) {
     }
   });
 
-  app.put("/funcionarios/:ID", async (req, res) => {
+  app.put("/clientes/:ID", async (req, res) => {
     try {
       const id = req.params.ID
       const body = req.body
-      const parametros = [body.NOME, body.EMAIL, body.TELEFONE, body.CARGO, body.CPF]
+      const parametros = [body.NOME, body.EMAIL, body.TELEFONE, body.CPF]
 
-      let resposta = await DaoFunc.atualizarFuncionario(parametros, id);
+      let resposta = await DaoFunc.atualizarCliente(parametros, id);
 
       res.json({
         result: resposta,
@@ -91,7 +91,7 @@ function FuncionarioController(app, bd) {
   });
 }
 
-export default FuncionarioController;
+export default ClienteController;
 
 // export const Funcionarios = (app, db) => {
 //     app

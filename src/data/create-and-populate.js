@@ -11,6 +11,15 @@ CREATE TABLE IF NOT EXISTS "FUNCIONARIOS" (
     "CPF" varchar(64)
   );`;
 
+  const CLIENTES_SCHEMA = `
+CREATE TABLE IF NOT EXISTS "CLIENTES" (
+  "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "NOME" varchar(64),
+  "EMAIL" varchar(64),
+  "TELEFONE" varchar(64),
+  "CPF" varchar(64)
+);`;
+
 const REMEDIOS_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "REMEDIOS" (
     "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,6 +43,17 @@ const ADD_REMEDIOS_DATA = `
 INSERT INTO REMEDIOS (NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE)
 VALUES
     ('Neosaldina 30 drágeas', 'Dipirona 300mg, mucato de isometepteno 30mg, cafeína 30mg', 'Takeda', 27.59, 100)
+    `;
+
+
+
+const ADD_CLIENTES_DATA = `
+INSERT INTO CLIENTES (NOME, EMAIL, TELEFONE, CPF)
+VALUES 
+    ('Lucas Ribeiro', 'lllucas312@gmail.com', '99485165', '01148151643'),
+    ('Leonardo Matias', 'leomatias12zz@gmail.com', '994897438', '3211681580'),
+    ('Patrick Dias', 'patrick.dias@gmail.com', '998543833', '5629248620'),
+    ('Bruno Vianna', 'bruuu.viana@gmail.com', '988463610', '05644364780')
     `;
 
 function criaTabelaFuncionarios() {
@@ -60,9 +80,23 @@ function populaTabelaRemedios() {
   });
 }
 
+function criaTabelaClientes() {
+  db.run(CLIENTES_SCHEMA, (error) => {
+    if (error) console.log("Erro ao criar tabela de Clientes");
+  });
+}
+
+function populaTabelaClientes() {
+  db.run(ADD_CLIENTES_DATA, (error) => {
+    if (error) console.log("Erro ao popular tabela de Clientes");
+  });
+}
+
 db.serialize(() => {
   criaTabelaFuncionarios();
   criaTabelaRemedios();
+  criaTabelaClientes();
   populaTabelaFuncionarios();
   populaTabelaRemedios();
+  populaTabelaClientes();
 });
