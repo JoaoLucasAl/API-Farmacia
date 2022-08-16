@@ -1,13 +1,13 @@
 // Funcionario-DAO concluido
 
-class Funcionarios {
+class FuncionariosD {
   constructor(bd) {
     this.bd = bd;
   }
 
   verFuncionarios() {
     return new Promise((resolve, reject) => {
-      const query = "SELECT * FROM funcionarios";
+      const query = "SELECT * FROM FUNCIONARIOS";
 
       this.bd.all(query, (error, response) => {
         if (error) reject(`Erro ao acessar o BD. ${error}`);
@@ -18,7 +18,7 @@ class Funcionarios {
 
   verFuncionarioById(id) {
     return new Promise((resolve, reject) => {
-      const query = "SELECT * FROM funcionarios WHERE id = (?)";
+      const query = "SELECT * FROM FUNCIONARIOS WHERE ID = (?)";
 
       this.bd.get(query, id, (error, response) => {
         if (error) reject(`Erro ao acessar o BD. ${error}`);
@@ -29,7 +29,7 @@ class Funcionarios {
 
   addFuncionario(funcionario) {
     return new Promise((resolve, reject) => {
-      const query = `INSERT INTO funcionarios (nome, email, cargo, cpf, telefone)
+      const query = `INSERT INTO FUNCIONARIOS (NOME, EMAIL, TELEFONE, CARGO, CPF)
              VALUES (?,?,?,?,?)`;
 
       let obj = Object.values(funcionario);
@@ -42,7 +42,7 @@ class Funcionarios {
 
   deleteFuncionario(id) {
     return new Promise((resolve, reject) => {
-      const query = `DELETE FROM funcionarios WHERE id = (?)`;
+      const query = `DELETE FROM FUNCIONARIOS WHERE ID = (?)`;
 
       this.bd.run(query, id, (error) => {
         if (error)
@@ -52,10 +52,10 @@ class Funcionarios {
     });
   }
 
-  atualizarFuncionario(dados, id) {
+  atualizarFuncionario(data, id) {
     return new Promise((resolve, reject) => {
-      const query = `UPDATE funcionarios SET nome = (?), email = (?), cargo = (?), cpf = (?), telefone = (?) WHERE id = (?)`;
-      const patch = [dados[0], dados[1], dados[2], dados[3], dados[4], id];
+      const query = `UPDATE FUNCIONARIOS SET NOME = (?), EMAIL = (?) TELEFONE = (?), CARGO = (?), CPF = (?) WHERE ID = (?)`;
+      const patch = [data[0], data[1], data[2], data[3], data[4], id];
 
       this.bd.run(query, patch, (error) => {
         if (error)
@@ -68,4 +68,4 @@ class Funcionarios {
   }
 }
 
-export { Funcionarios };
+export default FuncionariosD;

@@ -1,15 +1,13 @@
 // Funcionarios Model concluido
 
-import { v4 as uuid}  from "uuid";
-
 class FuncionariosM {
-    constructor(nome, email, cargo, cpf, telefone) {
-        this.id = uuid();
-        this.nome = nome;
-        this.email = email;
-        this.cargo = cargo;
-        this.cpf = cpf;
-        this.telefone = telefone;
+    constructor(nome, email, telefone, cargo, cpf ) {
+        this.NOME = nome;
+        this.EMAIL = email;
+        this.TELEFONE = telefone;
+        this.CARGO = cargo;
+        this.CPF = cpf;
+        
     }
 }
 
