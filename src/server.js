@@ -1,5 +1,5 @@
 import express from "express";
-import bd from './data/sqlite3-db'
+import { bd } from './data/sqlite3-db.js'
 
 
 const app = express();
