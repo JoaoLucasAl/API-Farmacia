@@ -1,13 +1,15 @@
 // Remedios Model concluido
 
+import {v4 as uuid } from 'uuid' 
 
 class RemediosM {
-    constructor(nome, principio_ativo, laboratorio, preco, quantidade) {
-        this.nome = nome;
-        this.principio_ativo = principio_ativo;
-        this.laboratorio = laboratorio;
-        this.preco = preco;
-        this.quantidade = quantidade;
+    constructor(nome, principio_ativo, laboratorio, preco, estoque) {
+        this.ID = uuid()
+        this.NOME = nome;
+        this.PRINCIPIO_ATIVO = principio_ativo;
+        this.LABORATORIO = laboratorio;
+        this.PRECO = preco;
+        this.ESTOQUE = estoque;
     }
 }
 

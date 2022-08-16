@@ -29,13 +29,13 @@ class RemediosD {
 
   addRemedios(remedio) {
     return new Promise((resolve, reject) => {
-      const query = `INSERT INTO REMEDIOS (NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE)
-               VALUES (?,?,?,?,?)`;
+      const query = `INSERT INTO REMEDIOS (ID, NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE)
+               VALUES (?,?,?,?,?,?)`;
 
       let obj = Object.values(remedio);
       this.bd.run(query, obj, (error) => {
         if (error) reject(`Erro ao adicionar novo Funcionário. ${error}`);
-        else resolve(`Novo funcionário adicionando com sucesso ao BD.`);
+        else resolve(`Novo remédio adicionando com sucesso ao BD.`);
       });
     });
   }

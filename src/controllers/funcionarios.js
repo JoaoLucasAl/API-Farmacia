@@ -39,7 +39,7 @@ function FuncionarioController(app, bd) {
   });
 
   //rota que cria o cadastro de um novo funcionario
-  app.post("/funcionarios/novoFuncionario", async (req, res) => {
+  app.post("/funcionarios", async (req, res) => {
     try {
       const { NOME, EMAIL, TELEFONE, CARGO, CPF } = req.body;
 
@@ -57,7 +57,7 @@ function FuncionarioController(app, bd) {
   });
 
   //rota que deleta um funcionário pelo ID
-  app.delete("/funcionarios/deleteFuncionario/:ID", async (req, res) => {
+  app.delete("/funcionarios/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
       const resposta = await DaoFunc.deleteFuncionario(id);

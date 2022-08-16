@@ -29,8 +29,8 @@ class FuncionariosD {
 
   addFuncionario(funcionario) {
     return new Promise((resolve, reject) => {
-      const query = `INSERT INTO FUNCIONARIOS (NOME, EMAIL, TELEFONE, CARGO, CPF)
-             VALUES (?,?,?,?,?)`;
+      const query = `INSERT INTO FUNCIONARIOS (ID, NOME, EMAIL, TELEFONE, CARGO, CPF)
+             VALUES (?,?,?,?,?,?)`;
 
       let obj = Object.values(funcionario);
       this.bd.run(query, obj, (error) => {
@@ -54,7 +54,7 @@ class FuncionariosD {
 
   atualizarFuncionario(data, id) {
     return new Promise((resolve, reject) => {
-      const query = `UPDATE FUNCIONARIOS SET NOME = (?), EMAIL = (?) TELEFONE = (?), CARGO = (?), CPF = (?) WHERE ID = (?)`;
+      const query = `UPDATE FUNCIONARIOS SET NOME = (?), EMAIL = (?), TELEFONE = (?), CARGO = (?), CPF = (?) WHERE ID = (?)`;
       const patch = [data[0], data[1], data[2], data[3], data[4], id];
 
       this.bd.run(query, patch, (error) => {
