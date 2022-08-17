@@ -30,6 +30,22 @@ CREATE TABLE IF NOT EXISTS "REMEDIOS" (
     "ESTOQUE" int
   );`;
 
+  const VENDAS_SCHEMA = `
+  CREATE TABLE IF NOT EXISTS "VENDAS" (
+    "ID"	uuid PRIMAR KEY,
+    "REMEDIO_ID"	uuid,
+    "QUANTIDADE"	float,
+    "PRECO"	float,
+    "DESCONTO"	float,
+    "FUNCIONARIO_ID"	uuid,
+    "CLIENTE_ID"	uuid,
+    FOREIGN KEY("REMEDIO_ID") REFERENCES "REMEDIOS"("ID"),
+    FOREIGN KEY("FUNCIONARIO_ID") REFERENCES "FUNCIONARIOS"("ID"),
+    FOREIGN KEY("CLIENTE_ID") REFERENCES "CLIENTES"("ID")
+  ); `;
+
+
+
 const ADD_FUNCIONARIOS_DATA = `
   INSERT INTO FUNCIONARIOS (ID, NOME, EMAIL, TELEFONE, CARGO, CPF)
   VALUES 
@@ -53,6 +69,14 @@ VALUES
     ('20527646-7d36-4b66-ad5b-9c9fe5c8f228','Patrick Dias', 'patrick.dias@gmail.com', '998543833', '5629248620'),
     ('f58d2ba2-a7b9-423f-bcce-dcfc6adc6e93','Bruno Vianna', 'bruuu.viana@gmail.com', '988463610', '05644364780')
     `;
+
+
+    const ADD_VENDAS_DATA = `
+    INSERT INTO VENDAS (id, remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id)
+    VALUES 
+        ('88882c64-4aef-47ba-a467-745c4c7poob7','c6bd83f9-74d7-4793-aabc-a8311644fbf6', '1', '27.59', '0', '52645d6f-0d85-4a78-845e-dae61c172a46', '20527646-7d36-4b66-ad5b-9c9fe5c8f228')
+      
+        `;
 
 function criaTabelaFuncionarios() {
   db.run(FUNCIONARIOS_SCHEMA, (error) => {
@@ -90,6 +114,18 @@ function populaTabelaClientes() {
   });
 }
 
+function criaTabelaVendas() {
+  db.run(VENDAS_SCHEMA, (error) => {
+    if (error) console.log("Erro ao criar tabela de vendas");
+  });
+}
+
+function populaTabelaVendas() {
+  db.run(ADD_VENDAS_DATA, (error) => {
+    if (error) console.log("Erro ao popular tabela de Vendas");
+  });
+}
+
 db.serialize(() => {
   criaTabelaFuncionarios();
   criaTabelaRemedios();
@@ -97,4 +133,6 @@ db.serialize(() => {
   populaTabelaFuncionarios();
   populaTabelaRemedios();
   populaTabelaClientes();
+  criaTabelaVendas();
+  populaTabelaVendas();
 });
