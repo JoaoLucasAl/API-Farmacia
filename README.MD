@@ -50,13 +50,15 @@ no banco, com Promises;
 `Finalizado`
 
 # Ferramentas Utilizadas ⚙️🛠️
-- VISUAL STUDIO
+- VISUAL STUDIO CODE
 - GIT
 - GIT HUB
 - DISCORD
 - GOOGLE PLANILHAS
 - GOOGLE MEET
 - CANVA
+- SQLITE
+- NOTION
 
 # Nossa Equipe 👧🏾👦🏽👧🏾👦🏽
 | [<img src="https://avatars.githubusercontent.com/u/104860523?v=4" width=115><br><sub>Isadora Sant'Ana</sub>](https://github.com/isadora30) |  [<img src="https://avatars.githubusercontent.com/u/89653897?v=4" width=115><br><sub>João Lucas</sub>](https://github.com/JoaoLucasAl) |  [<img src="https://avatars.githubusercontent.com/u/75572493?v=4" width=115><br><sub>Raíssa Dias</sub>](https://github.com/Jackiesants) | [<img src="https://avatars.githubusercontent.com/u/103144665?v=4" width=115><br><sub>Rio Ribeiro</sub>](https://github.com/rioribeirods)
