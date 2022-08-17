@@ -4,7 +4,7 @@ import VendasD from "../dao/venda-dao.js";
 function VendasController(app, bd) {
   let DaoFunc = new VendasD(bd);
 
-  //rota que busca todos funcionários
+  //rota que busca todas as vendas
   app.get("/vendas", async (req, res) => {
     try {
       const resposta = await DaoFunc.verVendas();
