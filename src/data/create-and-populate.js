@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS "REMEDIOS" (
     "ESTOQUE" int
   );`;
 
+
   const VENDAS_SCHEMA = `
   CREATE TABLE IF NOT EXISTS "VENDAS" (
     "ID"	uuid PRIMAR KEY,
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS "REMEDIOS" (
     FOREIGN KEY("FUNCIONARIO_ID") REFERENCES "FUNCIONARIOS"("ID"),
     FOREIGN KEY("CLIENTE_ID") REFERENCES "CLIENTES"("ID")
   ); `;
+
 
 
 
@@ -71,12 +73,12 @@ VALUES
     `;
 
 
-    const ADD_VENDAS_DATA = `
-    INSERT INTO VENDAS (id, remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id)
-    VALUES 
-        ('88882c64-4aef-47ba-a467-745c4c7poob7','c6bd83f9-74d7-4793-aabc-a8311644fbf6', '1', '27.59', '0', '52645d6f-0d85-4a78-845e-dae61c172a46', '20527646-7d36-4b66-ad5b-9c9fe5c8f228')
-      
-        `;
+const ADD_VENDAS_DATA = `
+INSERT INTO VENDAS (ID, REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID)
+VALUES
+    ('71e090d8-a919-4dea-b2ae-dcd39bb0a391', 'c6bd83f9-74d7-4793-aabc-a8311644fbf6', 2, 22.34, '5%', '52645d6f-0d85-4a78-845e-dae61c172a46', '88882c64-4aef-47ba-a467-745c4c7cce6b')
+    `;
+
 
 function criaTabelaFuncionarios() {
   db.run(FUNCIONARIOS_SCHEMA, (error) => {
@@ -116,7 +118,9 @@ function populaTabelaClientes() {
 
 function criaTabelaVendas() {
   db.run(VENDAS_SCHEMA, (error) => {
-    if (error) console.log("Erro ao criar tabela de vendas");
+
+    if (error) console.log("Erro ao criar tabela de Vendas");
+
   });
 }
 
@@ -130,9 +134,9 @@ db.serialize(() => {
   criaTabelaFuncionarios();
   criaTabelaRemedios();
   criaTabelaClientes();
+  criaTabelaVendas();
   populaTabelaFuncionarios();
   populaTabelaRemedios();
   populaTabelaClientes();
-  criaTabelaVendas();
   populaTabelaVendas();
 });

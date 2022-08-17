@@ -1,3 +1,4 @@
+
 // Vendas Model concluido
 import {v4 as uuid } from 'uuid' 
 
@@ -10,6 +11,7 @@ class VendasM {
         this.DESCONTO =  desconto;
         this.FUNCIONARIO_ID =  funcionario_id
         this.CLIENTE_ID = cliente_id;
+
     }
 }
 

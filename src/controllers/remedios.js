@@ -4,6 +4,7 @@ import RemediosD from "../dao/remedio-dao.js";
 function RemediosController(app, bd) {
   let DaoRmd = new RemediosD(bd)
 
+  //rota que mostra todos os remédios
   app.get("/remedios", async (req, res) => {
     try {
       const resposta = await DaoRmd.verRemedios();
@@ -19,12 +20,16 @@ function RemediosController(app, bd) {
     }
   });
 
-//BuscaRemedios
+
+  //rota que busca o remedio a partir do ID
+  
   app.get("/remedios/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
 
+
       const resposta = await DaoRmd.verRemediosById(id);
+
       res.json({
         result: resposta,
         error: false,
@@ -36,7 +41,9 @@ function RemediosController(app, bd) {
     }
   });
 
+
     //rota que cria o cadastro de um novo remedio
+
   app.post("/remedios", async (req, res) => {
     try {
       const { NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE } = req.body;
@@ -44,7 +51,6 @@ function RemediosController(app, bd) {
       let remedio = new RemediosM(NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE);
 
       let resposta = await DaoRmd.addRemedios(remedio);
-      
       res.json({
         result: resposta,
       });
@@ -55,54 +61,44 @@ function RemediosController(app, bd) {
     }
   });
 
- //rota que deleta um remedio pelo ID
- app.delete("/remedios/:ID", async (req, res) => {
-  try {
-    const id = req.params.ID;
-    const resposta = await DaoRmd.deleteRemedios(id);
+  //rota que deleta um remedio pelo ID
+  app.delete("/remedios/:ID", async (req, res) => {
+    try {
+      const id = req.params.ID;
+      const resposta = await DaoRmd.deleteRemedio(id);
 
-    res.json({
-      result: resposta,
-    });
-  } catch (error) {
-    res.json({
-      error: error.message,
-    });
-  }
-});
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
 
-app.put("/remedios/:ID", async (req, res) => {
-  try {
-    const id = req.params.ID
-    const body = req.body
-    const parametros = [body.NOME, body.PRINCIPIO_ATIVO, body.LABORATORIO, body.PRECO, body.ESTOQUE]
 
-    let resposta = await DaoRmd.atualizarRemedios(parametros, id);
 
-    res.json({
-      result: resposta,
-    });
-  } catch (e) {
-    res.json({
-      error: e.message,
-    });
-  }
-});
 
+  //rota que atualiza o cadastro de um remedio pelo ID
+  app.put("/remedios/:ID", async (req, res) => {
+    try {
+      const id = req.params.ID
+      const body = req.body
+      const parametros = [body.NOME, body.PRINCIPIO_ATIVO, body.LABORATORIO, body.PRECO, body.ESTOQUE]
+
+      let resposta = await DaoRmd.atualizarRemedio(parametros, id);
+
+      res.json({
+        result: resposta,
+      });
+    } catch (e) {
+      res.json({
+        error: e.message,
+      });
+    }
+  });
 
 }
 
-
-export default RemediosController
-
-// export default (app, db) => {
-
-//     app
-//       .route("/remedios")
-//       .get((_, res) => verRemedios(res, db));
-      
-//     app
-//       .route("/remedios/:id")
-//       .get((req, res) => verRemediosById(req, res, db));
-      
-//   };
+export default RemediosController;

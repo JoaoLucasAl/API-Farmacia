@@ -8,6 +8,7 @@ function VendasController(app, bd) {
   app.get("/vendas", async (req, res) => {
     try {
       const resposta = await DaoVend.verVendas();
+
       res.json({
         result: resposta,
         countBd: resposta.length,
@@ -21,12 +22,15 @@ function VendasController(app, bd) {
   });
 
 
-  //Exibe Venda pelo ID
+
+  //exibe Venda pelo ID
+
   app.get("/vendas/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
 
       const resposta = await DaoVend.verVendasById(id);
+
       res.json({
         result: resposta,
         error: false,
@@ -38,15 +42,16 @@ function VendasController(app, bd) {
     }
   });
 
-    //Inserir venda
+
+  //rota que cria o cadastro de uma nova venda
   app.post("/vendas", async (req, res) => {
     try {
-      const { remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id } = req.body;
+      const { REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID } = req.body;
 
-      let venda = new VendasM(remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id);
+      let venda = new VendasM(REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID);
 
-      let resposta = await DaoVend.addVendas(venda);
-      
+      let resposta = await DaoVend.addVenda(venda);
+
       res.json({
         result: resposta,
       });
@@ -56,6 +61,7 @@ function VendasController(app, bd) {
       });
     }
   });
+
 
  //rota que deleta uma venda pela ID
  app.delete("/vendas/:ID", async (req, res) => {
@@ -77,7 +83,7 @@ app.put("/vendas/:ID", async (req, res) => {
   try {
     const id = req.params.ID
     const body = req.body
-    const parametros = [body.remedio_id, body.quantidade, body.preco, body.desconto, body.funcionario_id, body.cliente_id]
+    const parametros = [body.REMEDIO_ID, body.QUANTIDADE, body.PRECO, body.DESCONTO, body.FUNCIONARIO_ID, body.CLIENTE_ID]
 
     let resposta = await DaoVend.atualizarVendas(parametros, id);
 
@@ -95,3 +101,4 @@ app.put("/vendas/:ID", async (req, res) => {
   }
 
   export default VendasController
+
