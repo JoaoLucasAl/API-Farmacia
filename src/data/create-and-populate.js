@@ -30,16 +30,22 @@ CREATE TABLE IF NOT EXISTS "REMEDIOS" (
     "ESTOQUE" int
   );`;
 
-const VENDAS_SCHEMA = `
-CREATE TABLE IF NOT EXISTS "VENDAS" (
-    "ID" uuid PRIMARY KEY,
-    "REMEDIO_ID" uuid,
-    "QUANTIDADE" int,
-    "PRECO" float,
-    "DESCONTO" varchar(64),
-    "FUNCIONARIO_ID" uuid,
-    "CLIENTE_ID" uuid
-  );`;
+
+  const VENDAS_SCHEMA = `
+  CREATE TABLE IF NOT EXISTS "VENDAS" (
+    "ID"	uuid PRIMAR KEY,
+    "REMEDIO_ID"	uuid,
+    "QUANTIDADE"	float,
+    "PRECO"	float,
+    "DESCONTO"	float,
+    "FUNCIONARIO_ID"	uuid,
+    "CLIENTE_ID"	uuid,
+    FOREIGN KEY("REMEDIO_ID") REFERENCES "REMEDIOS"("ID"),
+    FOREIGN KEY("FUNCIONARIO_ID") REFERENCES "FUNCIONARIOS"("ID"),
+    FOREIGN KEY("CLIENTE_ID") REFERENCES "CLIENTES"("ID")
+  ); `;
+
+
 
 
 const ADD_FUNCIONARIOS_DATA = `
@@ -66,11 +72,13 @@ VALUES
     ('f58d2ba2-a7b9-423f-bcce-dcfc6adc6e93','Bruno Vianna', 'bruuu.viana@gmail.com', '988463610', '05644364780')
     `;
 
+
 const ADD_VENDAS_DATA = `
 INSERT INTO VENDAS (ID, REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID)
 VALUES
     ('71e090d8-a919-4dea-b2ae-dcd39bb0a391', 'c6bd83f9-74d7-4793-aabc-a8311644fbf6', 2, 22.34, '5%', '52645d6f-0d85-4a78-845e-dae61c172a46', '88882c64-4aef-47ba-a467-745c4c7cce6b')
     `;
+
 
 function criaTabelaFuncionarios() {
   db.run(FUNCIONARIOS_SCHEMA, (error) => {
@@ -110,7 +118,9 @@ function populaTabelaClientes() {
 
 function criaTabelaVendas() {
   db.run(VENDAS_SCHEMA, (error) => {
+
     if (error) console.log("Erro ao criar tabela de Vendas");
+
   });
 }
 

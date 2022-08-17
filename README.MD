@@ -45,6 +45,233 @@ no banco, com Promises;
  - npm start
     
 # Quais são as rotas possíveis:
+● CLIENTES
+  //rota que cria o cadastro de um novo funcionario
+  app.post("/clientes", async (req, res) => {
+    try {
+      const { NOME, EMAIL, TELEFONE, CPF } = req.body;
+
+      let cliente = new ClientesM(NOME, EMAIL, TELEFONE, CPF);
+
+      let resposta = await DaoFunc.addClientes(cliente);
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+  //rota que deleta um funcionário pelo ID
+  app.delete("/clientes/:ID", async (req, res) => {
+    try {
+      const id = req.params.ID;
+      const resposta = await DaoFunc.deleteCliente(id);
+
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+   
+        
+● FUNCIONÁRIOS
+        //rota que busca todos funcionários
+  app.get("/funcionarios", async (req, res) => {
+    try {
+      const resposta = await DaoFunc.verFuncionarios();
+      res.json({
+        result: resposta,
+        countBd: resposta.length,
+        error: false,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+  //rota que busca o funcionário a partir do ID
+  app.get("/funcionarios/:ID", async (req, res) => {
+    try {
+      const id = req.params.ID;
+
+      const resposta = await DaoFunc.verFuncionarioById(id);
+      res.json({
+        result: resposta,
+        error: false,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+  //rota que cria o cadastro de um novo funcionario
+  app.post("/funcionarios", async (req, res) => {
+    try {
+      const { NOME, EMAIL, TELEFONE, CARGO, CPF } = req.body;
+
+      let funcionario = new FuncionariosM(NOME, EMAIL, TELEFONE, CARGO, CPF);
+
+      let resposta = await DaoFunc.addFuncionario(funcionario);
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+  //rota que deleta um funcionário pelo ID
+  app.delete("/funcionarios/:ID", async (req, res) => {
+    try {
+      const id = req.params.ID;
+      const resposta = await DaoFunc.deleteFuncionario(id);
+
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+        
+        ● REMÉDIOS
+        //rota que cria o cadastro de um novo remedio
+  app.post("/remedios", async (req, res) => {
+    try {
+      const { NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE } = req.body;
+
+      let remedio = new RemediosM(NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE);
+
+      let resposta = await DaoRmd.addRemedios(remedio);
+      
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+ //rota que deleta um remedio pelo ID
+ app.delete("/remedios/:ID", async (req, res) => {
+  try {
+    const id = req.params.ID;
+    const resposta = await DaoRmd.deleteRemedios(id);
+
+    res.json({
+      result: resposta,
+    });
+  } catch (error) {
+    res.json({
+      error: error.message,
+    });
+  }
+});
+        
+       ● VENDAS
+        //Exibe todas as vendas
+  app.get("/vendas", async (req, res) => {
+    try {
+      const resposta = await DaoVend.verVendas();
+      res.json({
+        result: resposta,
+        countBd: resposta.length,
+        error: false,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+
+  //Exibe Venda pelo ID
+  app.get("/vendas/:ID", async (req, res) => {
+    try {
+      const id = req.params.ID;
+
+      const resposta = await DaoVend.verVendasById(id);
+      res.json({
+        result: resposta,
+        error: false,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+    //Inserir venda
+  app.post("/vendas", async (req, res) => {
+    try {
+      const { remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id } = req.body;
+
+      let venda = new VendasM(remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id);
+
+      let resposta = await DaoVend.addVendas(venda);
+      
+      res.json({
+        result: resposta,
+      });
+    } catch (error) {
+      res.json({
+        error: error.message,
+      });
+    }
+  });
+
+ //rota que deleta uma venda pela ID
+ app.delete("/vendas/:ID", async (req, res) => {
+  try {
+    const id = req.params.ID;
+    const resposta = await DaoVend.deleteVendas(id);
+
+    res.json({
+      result: resposta,
+    });
+  } catch (error) {
+    res.json({
+      error: error.message,
+    });
+  }
+});
+
+app.put("/vendas/:ID", async (req, res) => {
+  try {
+    const id = req.params.ID
+    const body = req.body
+    const parametros = [body.remedio_id, body.quantidade, body.preco, body.desconto, body.funcionario_id, body.cliente_id]
+
+    let resposta = await DaoVend.atualizarVendas(parametros, id);
+
+    res.json({
+      result: resposta,
+    });
+  } catch (e) {
+    res.json({
+      error: e.message,
+    });
+  }
+});
 
 # Status do Projeto 🚀
 `Finalizado`
@@ -59,6 +286,8 @@ no banco, com Promises;
 - CANVA
 - SQLITE
 - NOTION
+- NODE JS
+- INSOMNIA
 
 # Nossa Equipe 👧🏾👦🏽👧🏾👦🏽
 | [<img src="https://avatars.githubusercontent.com/u/104860523?v=4" width=115><br><sub>Isadora Sant'Ana</sub>](https://github.com/isadora30) |  [<img src="https://avatars.githubusercontent.com/u/89653897?v=4" width=115><br><sub>João Lucas</sub>](https://github.com/JoaoLucasAl) |  [<img src="https://avatars.githubusercontent.com/u/75572493?v=4" width=115><br><sub>Raíssa Dias</sub>](https://github.com/Jackiesants) | [<img src="https://avatars.githubusercontent.com/u/103144665?v=4" width=115><br><sub>Rio Ribeiro</sub>](https://github.com/rioribeirods)
