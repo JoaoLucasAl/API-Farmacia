@@ -20,7 +20,6 @@ function RemediosController(app, bd) {
     }
   });
 
-
   //rota que busca o remedio a partir do ID
   app.get("/remedios/:ID", async (req, res) => {
     try {
@@ -90,8 +89,7 @@ function RemediosController(app, bd) {
       });
     }
   });
+
 }
 
-
-export default RemediosController
-
+export default RemediosController;
