@@ -27,8 +27,8 @@ class VendasD {
   
     addVenda(clientes) {
       return new Promise((resolve, reject) => {
-        const query = `INSERT INTO VENDAS (REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID)
-               VALUES (?,?,?,?,?,?)`;
+        const query = `INSERT INTO VENDAS (ID, REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID)
+               VALUES (?,?,?,?,?,?,?)`;
   
         let obj = Object.values(clientes);
         this.bd.run(query, obj, (error) => {

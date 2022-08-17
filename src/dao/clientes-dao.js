@@ -27,8 +27,8 @@ class ClientesD {
   
     addClientes(clientes) {
       return new Promise((resolve, reject) => {
-        const query = `INSERT INTO CLIENTES (NOME, EMAIL, TELEFONE, CPF)
-               VALUES (?,?,?,?)`;
+        const query = `INSERT INTO CLIENTES (ID, NOME, EMAIL, TELEFONE, CPF)
+               VALUES (?,?,?,?,?)`;
   
         let obj = Object.values(clientes);
         this.bd.run(query, obj, (error) => {
