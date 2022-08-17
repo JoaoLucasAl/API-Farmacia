@@ -1,11 +1,10 @@
 import ClientesM from "../models/clientes.js";
 import ClientesD from "../dao/clientes-dao.js";
 
-// PUT não está funcionando
 function ClienteController(app, bd) {
   let DaoFunc = new ClientesD(bd);
 
-  //rota que busca todos funcionários
+  //rota que busca todos os clientes
   app.get("/clientes", async (req, res) => {
     try {
       const resposta = await DaoFunc.verClientes();
@@ -21,7 +20,7 @@ function ClienteController(app, bd) {
     }
   });
 
-  //rota que busca o funcionário a partir do ID
+  //rota que busca o cliente a partir do ID
   app.get("/clientes/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
@@ -38,7 +37,7 @@ function ClienteController(app, bd) {
     }
   });
 
-  //rota que cria o cadastro de um novo funcionario
+  //rota que cria o cadastro de um novo cliente
   app.post("/clientes", async (req, res) => {
     try {
       const { NOME, EMAIL, TELEFONE, CPF } = req.body;
@@ -56,7 +55,7 @@ function ClienteController(app, bd) {
     }
   });
 
-  //rota que deleta um funcionário pelo ID
+  //rota que deleta um cliente pelo ID
   app.delete("/clientes/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
@@ -72,6 +71,7 @@ function ClienteController(app, bd) {
     }
   });
 
+  //rota que atualiza o cadastro de um cliente pelo ID
   app.put("/clientes/:ID", async (req, res) => {
     try {
       const id = req.params.ID
@@ -93,13 +93,3 @@ function ClienteController(app, bd) {
 
 export default ClienteController;
 
-// export const Funcionarios = (app, db) => {
-//     app
-//       .route("/funcionarios")
-//       .get((_, res) => verFuncionarios(res, db));
-
-//     app
-//       .route("/funcionarios/:id")
-//       .get((req, res) => verFuncionarioById(req, res, db));
-
-//   };

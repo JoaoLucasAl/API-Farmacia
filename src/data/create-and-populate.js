@@ -30,6 +30,18 @@ CREATE TABLE IF NOT EXISTS "REMEDIOS" (
     "ESTOQUE" int
   );`;
 
+const VENDAS_SCHEMA = `
+CREATE TABLE IF NOT EXISTS "VENDAS" (
+    "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "REMEDIO_ID" int,
+    "QUANTIDADE" int,
+    "PRECO" float,
+    "DESCONTO" varchar(64),
+    "FUNCIONARIO_ID" int,
+    "CLIENTE_ID" int
+  );`;
+
+
 const ADD_FUNCIONARIOS_DATA = `
 INSERT INTO FUNCIONARIOS (NOME, EMAIL, TELEFONE, CARGO, CPF)
 VALUES 
@@ -54,6 +66,12 @@ VALUES
     ('Leonardo Matias', 'leomatias12zz@gmail.com', '994897438', '3211681580'),
     ('Patrick Dias', 'patrick.dias@gmail.com', '998543833', '5629248620'),
     ('Bruno Vianna', 'bruuu.viana@gmail.com', '988463610', '05644364780')
+    `;
+
+const ADD_VENDAS_DATA = `
+INSERT INTO VENDAS (REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID)
+VALUES
+    ( 6, 2, 22.34, '5%', 2, 1)
     `;
 
 function criaTabelaFuncionarios() {
@@ -92,11 +110,25 @@ function populaTabelaClientes() {
   });
 }
 
+function criaTabelaVendas() {
+  db.run(VENDAS_SCHEMA, (error) => {
+    if (error) console.log("Erro ao criar tabela de Vendas");
+  });
+}
+
+function populaTabelaVendas() {
+  db.run(ADD_VENDAS_DATA, (error) => {
+    if (error) console.log("Erro ao popular tabela de Vendas");
+  });
+}
+
 db.serialize(() => {
   criaTabelaFuncionarios();
   criaTabelaRemedios();
   criaTabelaClientes();
+  criaTabelaVendas();
   populaTabelaFuncionarios();
   populaTabelaRemedios();
   populaTabelaClientes();
+  populaTabelaVendas();
 });
