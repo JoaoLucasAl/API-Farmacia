@@ -46,232 +46,246 @@ no banco, com Promises;
     
 # Quais são as rotas possíveis:
 ● CLIENTES
-  //rota que cria o cadastro de um novo funcionario
-  app.post("/clientes", async (req, res) => {
-    try {
-      const { NOME, EMAIL, TELEFONE, CPF } = req.body;
+    
+  ● GET/clientes (para visualizar todos os clientes do banco)
 
-      let cliente = new ClientesM(NOME, EMAIL, TELEFONE, CPF);
+{
+	"result": [
+		{
+			"ID": "88882c64-4aef-47ba-a467-745c4c7cce6b",
+			"NOME": "Lucas Ribeiro",
+			"EMAIL": "lllucas312@gmail.com",
+			"TELEFONE": "99485165",
+			"CPF": "01148151643"
+		},
+		{
+			"ID": "508f5086-dd87-4066-831c-f47ef39138e2",
+			"NOME": "Leonardo Matias",
+			"EMAIL": "leomatias12zz@gmail.com",
+			"TELEFONE": "994897438",
+			"CPF": "3211681580"
+		},
+		{
+			"ID": "20527646-7d36-4b66-ad5b-9c9fe5c8f228",
+			"NOME": "Patrick Dias",
+			"EMAIL": "patrick.dias@gmail.com",
+			"TELEFONE": "998543833",
+			"CPF": "5629248620"
+		}
+	],
+	"countBd": 3,
+	"error": false
+}
 
-      let resposta = await DaoFunc.addClientes(cliente);
-      res.json({
-        result: resposta,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+  ● GET/clientes/:id (para visualizar através do id um cliente específico)
 
-  //rota que deleta um funcionário pelo ID
-  app.delete("/clientes/:ID", async (req, res) => {
-    try {
-      const id = req.params.ID;
-      const resposta = await DaoFunc.deleteCliente(id);
-
-      res.json({
-        result: resposta,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+    {
+	"result": {
+		"ID": "88882c64-4aef-47ba-a467-745c4c7cce6b",
+		"NOME": "Lucas Ribeiro",
+		"EMAIL": "lllucas312@gmail.com",
+		"TELEFONE": "99485165",
+		"CPF": "01148151643"
+	},
+	"error": false
+}
    
+  ● POST/clientes (para adicionar um novo cliente)
+
+   {
+	"result": "Novo cliente adicionando com sucesso ao BD."
+}
+
+  ● PUT/clientes/:id (para atualizar um cliente existente)
+
+  {
+	"result": "Atualização realizada com sucesso."
+}
+
+  ● DELETE/clientes/:id (para deletar um cliente existente)
+
+  {
+	"result": "Cliente com ID:{id} deletado com sucesso"
+}
         
 ● FUNCIONÁRIOS
-        //rota que busca todos funcionários
-  app.get("/funcionarios", async (req, res) => {
-    try {
-      const resposta = await DaoFunc.verFuncionarios();
-      res.json({
-        result: resposta,
-        countBd: resposta.length,
-        error: false,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
 
-  //rota que busca o funcionário a partir do ID
-  app.get("/funcionarios/:ID", async (req, res) => {
-    try {
-      const id = req.params.ID;
+  ● GET/funcionarios (para visualizar todos os funcionários do banco)
 
-      const resposta = await DaoFunc.verFuncionarioById(id);
-      res.json({
-        result: resposta,
-        error: false,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+  {
+	"result": [
+		{
+			"ID": "41b5071d-3fae-438b-be7a-7641546aeb82",
+			"NOME": "João Lucas",
+			"EMAIL": "joao.lucas@gmail.com",
+			"TELEFONE": "998667248",
+			"CARGO": "Gerente",
+			"CPF": "01232114790"
+		},
+		{
+			"ID": "52645d6f-0d85-4a78-845e-dae61c172a46",
+			"NOME": "Rio Ribeiro",
+			"EMAIL": "rio.ribeiro@gmail.com",
+			"TELEFONE": "994895138",
+			"CARGO": "Farmaceutico",
+			"CPF": "32115998780"
+		},
+		{
+			"ID": "aa931f49-3baf-4f2a-9704-2bdf9dd6cd9d",
+			"NOME": "Isadora SantAna",
+			"EMAIL": "isadora.santana@gmail.com",
+			"TELEFONE": "998620133",
+			"CARGO": "Fiscal",
+			"CPF": "14785248620"
+		}
+	],
+	"countBd": 3,
+	"error": false
+}
 
-  //rota que cria o cadastro de um novo funcionario
-  app.post("/funcionarios", async (req, res) => {
-    try {
-      const { NOME, EMAIL, TELEFONE, CARGO, CPF } = req.body;
+  ● GET/funcionarios/:id (para visualizar um funcionário através do id)
 
-      let funcionario = new FuncionariosM(NOME, EMAIL, TELEFONE, CARGO, CPF);
+  {
+	"result": {
+		"ID": "41b5071d-3fae-438b-be7a-7641546aeb82",
+		"NOME": "João Lucas",
+		"EMAIL": "joao.lucas@gmail.com",
+		"TELEFONE": "998667248",
+		"CARGO": "Gerente",
+		"CPF": "01232114790"
+	},
+	"error": false
+}
 
-      let resposta = await DaoFunc.addFuncionario(funcionario);
-      res.json({
-        result: resposta,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+  ● POST/funcionarios (para adicionar um novo funcionário)
 
-  //rota que deleta um funcionário pelo ID
-  app.delete("/funcionarios/:ID", async (req, res) => {
-    try {
-      const id = req.params.ID;
-      const resposta = await DaoFunc.deleteFuncionario(id);
+  {
+	"result": "Novo funcionário adicionando com sucesso ao BD."
+}
+  ● PUT/funcionarios/:id (para atualizar um funcionário existente)
 
-      res.json({
-        result: resposta,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
-        
-        ● REMÉDIOS
-        //rota que cria o cadastro de um novo remedio
-  app.post("/remedios", async (req, res) => {
-    try {
-      const { NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE } = req.body;
+  {
+	"result": "Atualização realizada com sucesso."
+}
+  ● DELETE/funcionarios/:id (para deletar um funcionário existente)
 
-      let remedio = new RemediosM(NOME, PRINCIPIO_ATIVO, LABORATORIO, PRECO, ESTOQUE);
+  {
+	"result": "Usuário com ID:{id} deletado com sucesso"
+}
 
-      let resposta = await DaoRmd.addRemedios(remedio);
-      
-      res.json({
-        result: resposta,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+● REMÉDIOS
 
- //rota que deleta um remedio pelo ID
- app.delete("/remedios/:ID", async (req, res) => {
-  try {
-    const id = req.params.ID;
-    const resposta = await DaoRmd.deleteRemedios(id);
+  ● GET/remedios (para visualizar todos os remédios do banco)
 
-    res.json({
-      result: resposta,
-    });
-  } catch (error) {
-    res.json({
-      error: error.message,
-    });
-  }
-});
-        
-       ● VENDAS
-        //Exibe todas as vendas
-  app.get("/vendas", async (req, res) => {
-    try {
-      const resposta = await DaoVend.verVendas();
-      res.json({
-        result: resposta,
-        countBd: resposta.length,
-        error: false,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+    {
+	"result": [
+		{
+			"ID": "c6bd83f9-74d7-4793-aabc-a8311644fbf6",
+			"NOME": "Neosaldina 30 drágeas",
+			"PRINCIPIO_ATIVO": "Dipirona 300mg, mucato de isometepteno 30mg, cafeína 30mg",
+			"LABORATORIO": "Takeda",
+			"PRECO": 27.59,
+			"ESTOQUE": 100
+		}
+	],
+	"countBd": 1,
+	"error": false
+}
 
+  ● GET/remedios/:id (para visualizar um remédio através do id)
 
-  //Exibe Venda pelo ID
-  app.get("/vendas/:ID", async (req, res) => {
-    try {
-      const id = req.params.ID;
+  {
+	"result": {
+		"ID": "c6bd83f9-74d7-4793-aabc-a8311644fbf6",
+		"NOME": "Neosaldina 30 drágeas",
+		"PRINCIPIO_ATIVO": "Dipirona 300mg, mucato de isometepteno 30mg, cafeína 30mg",
+		"LABORATORIO": "Takeda",
+		"PRECO": 27.59,
+		"ESTOQUE": 100
+	},
+	"error": false
+}
 
-      const resposta = await DaoVend.verVendasById(id);
-      res.json({
-        result: resposta,
-        error: false,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+  ● POST/remedios (para adicionar um novo remédio)
 
-    //Inserir venda
-  app.post("/vendas", async (req, res) => {
-    try {
-      const { remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id } = req.body;
+  {
+	"result": "Novo remédio adicionando com sucesso ao BD."
+}
 
-      let venda = new VendasM(remedio_id, quantidade, preco, desconto, funcionario_id, cliente_id);
+  ● PUT/remedios/:id (para atualizar um remédio existente)
 
-      let resposta = await DaoVend.addVendas(venda);
-      
-      res.json({
-        result: resposta,
-      });
-    } catch (error) {
-      res.json({
-        error: error.message,
-      });
-    }
-  });
+  {
+	"result": "Atualização realizada com sucesso."
+}
 
- //rota que deleta uma venda pela ID
- app.delete("/vendas/:ID", async (req, res) => {
-  try {
-    const id = req.params.ID;
-    const resposta = await DaoVend.deleteVendas(id);
+  ● DELETE/funcionarios/:id (para deletar um remédio existente)
 
-    res.json({
-      result: resposta,
-    });
-  } catch (error) {
-    res.json({
-      error: error.message,
-    });
-  }
-});
+  {
+	"result": "Remédio com ID:{id} deletado com sucesso"
+}
 
-app.put("/vendas/:ID", async (req, res) => {
-  try {
-    const id = req.params.ID
-    const body = req.body
-    const parametros = [body.remedio_id, body.quantidade, body.preco, body.desconto, body.funcionario_id, body.cliente_id]
+● VENDAS
 
-    let resposta = await DaoVend.atualizarVendas(parametros, id);
+  ● GET/vendas
 
-    res.json({
-      result: resposta,
-    });
-  } catch (e) {
-    res.json({
-      error: e.message,
-    });
-  }
-});
+  {
+	"result": [
+		{
+			"ID": "71e090d8-a919-4dea-b2ae-dcd39bb0a391",
+			"REMEDIO_ID": "c6bd83f9-74d7-4793-aabc-a8311644fbf6",
+			"QUANTIDADE": 4,
+			"PRECO": 22.34,
+			"DESCONTO": "5%",
+			"FUNCIONARIO_ID": "52645d6f-0d85-4a78-845e-dae61c172a46",
+			"CLIENTE_ID": "88882c64-4aef-47ba-a467-745c4c7cce6b"
+		},
+		{
+			"ID": "a455184e-5441-4794-9944-727ad5fc1167",
+			"REMEDIO_ID": "c6bb83f9-74d7-4793-aabc-a8311644fbf6",
+			"QUANTIDADE": 4,
+			"PRECO": 22.34,
+			"DESCONTO": "5%",
+			"FUNCIONARIO_ID": "52645d6f-0d85-4a78-845e-dae61c172a46",
+			"CLIENTE_ID": "88882c64-4aef-47ba-a467-745c4c7cce6b"
+		}
+	],
+	"countBd": 2,
+	"error": false
+}
+
+  ● GET/vendas/:id (para visualizar uma venda através do id)
+
+  {
+	"result": {
+		"ID": "71e090d8-a919-4dea-b2ae-dcd39bb0a391",
+		"REMEDIO_ID": "c6bd83f9-74d7-4793-aabc-a8311644fbf6",
+		"QUANTIDADE": 4,
+		"PRECO": 22.34,
+		"DESCONTO": "5%",
+		"FUNCIONARIO_ID": "52645d6f-0d85-4a78-845e-dae61c172a46",
+		"CLIENTE_ID": "88882c64-4aef-47ba-a467-745c4c7cce6b"
+	},
+	"error": false
+}
+
+  ● POST/vendas (para adicionar uma nova venda)
+
+  {
+	"result": "Nova venda adicionada com sucesso ao BD."
+}
+
+  ● PUT/vendas/:id (para atualizar uma venda existente)
+
+  {
+	"result": "Atualização realizada com sucesso."
+}
+
+  ● DELETE/funcionarios/:id (para deletar uma venda existente)
+
+  {
+	"result": "Venda com ID:{id} deletado com sucesso"
+}
+
 
 # Status do Projeto 🚀
 `Finalizado`
