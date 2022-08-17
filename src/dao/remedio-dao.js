@@ -52,7 +52,7 @@ class RemediosD {
     });
   }
 
-  atualizarRemedio(dados, id) {
+  atualizarRemedios(dados, id) {
     return new Promise((resolve, reject) => {
       const query = `UPDATE REMEDIOS SET NOME = (?), PRINCIPIO_ATIVO = (?), LABORATORIO = (?), PRECO = (?), ESTOQUE = (?) WHERE ID = (?)`;
       const patch = [dados[0], dados[1], dados[2], dados[3], dados[4], id];

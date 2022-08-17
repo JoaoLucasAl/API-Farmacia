@@ -50,7 +50,7 @@ function VendasController(app, bd) {
 
       let venda = new VendasM(REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID);
 
-      let resposta = await DaoVend.addVenda(venda);
+      let resposta = await DaoVend.addVendas(venda);
 
       res.json({
         result: resposta,
