@@ -65,7 +65,7 @@ function RemediosController(app, bd) {
   app.delete("/remedios/:ID", async (req, res) => {
     try {
       const id = req.params.ID;
-      const resposta = await DaoRmd.deleteRemedio(id);
+      const resposta = await DaoRmd.deleteRemedios(id);
 
       res.json({
         result: resposta,
@@ -86,9 +86,9 @@ function RemediosController(app, bd) {
       const id = req.params.ID
       const body = req.body
       const parametros = [body.NOME, body.PRINCIPIO_ATIVO, body.LABORATORIO, body.PRECO, body.ESTOQUE]
-
-      let resposta = await DaoRmd.atualizarRemedio(parametros, id);
-
+  
+      let resposta = await DaoRmd.atualizarRemedios(parametros, id);
+  
       res.json({
         result: resposta,
       });

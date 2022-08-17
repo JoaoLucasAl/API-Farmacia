@@ -25,19 +25,19 @@ class VendasD {
       });
     }
   
-    addVenda(clientes) {
+     addVendas(venda) {
       return new Promise((resolve, reject) => {
         const query = `INSERT INTO VENDAS (ID, REMEDIO_ID, QUANTIDADE, PRECO, DESCONTO, FUNCIONARIO_ID, CLIENTE_ID)
                VALUES (?,?,?,?,?,?,?)`;
-  
-        let obj = Object.values(clientes);
+
+        let obj = Object.values(venda);
         this.bd.run(query, obj, (error) => {
-          if (error) reject(`Erro ao adicionar nova Venda. ${error}`);
-          else resolve(`Nova venda adicionando com sucesso ao BD.`);
+          if (error) reject(`Erro ao adicionar nova venda. ${error}`);
+          else resolve(`Nova venda adicionada com sucesso ao BD.`);
         });
       });
     }
-  
+
     deleteVenda(id) {
       return new Promise((resolve, reject) => {
         const query = `DELETE FROM VENDAS WHERE ID = (?)`;
