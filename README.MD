@@ -22,8 +22,29 @@ no banco, com Promises;
 <P>● Inserção de um registro;
 <P>● Modificação de um registro;
 <P>● Deleção de um registro.
-
-
+  
+# Instalção da Aplicação:
+  <p>● Abra o terminal e executeos seguintes comandos:
+  <p>
+ - git clone https://github.com/JoaoLucasAl/API-Farmacia.git
+  <p>
+    ● Entre na pasta:
+  <p>
+ - cd API-Farmacia
+  <p>
+   ● Instale os pacotes:
+  <p>
+ - npm install
+  <p>
+   ● Crie e Popule o Banco de Dados:
+  <p>
+ - npm run database
+    <p>
+   ● Execute o Projeto:
+      <p>
+ - npm start
+    
+# Quais são as rotas possíveis:
 
 # Status do Projeto 🚀
 `Finalizado`
@@ -38,7 +59,8 @@ no banco, com Promises;
 - CANVA
 
 # Nossa Equipe 👧🏾👦🏽👧🏾👦🏽
-<imagem e links dos integrantes>
+| [<img src="https://avatars.githubusercontent.com/u/104860523?v=4" width=115><br><sub>Isadora Sant'Ana</sub>](https://github.com/isadora30) |  [<img src="https://avatars.githubusercontent.com/u/89653897?v=4" width=115><br><sub>João Lucas</sub>](https://github.com/JoaoLucasAl) |  [<img src="https://avatars.githubusercontent.com/u/75572493?v=4" width=115><br><sub>Raíssa Dias</sub>](https://github.com/Jackiesants) | [<img src="https://avatars.githubusercontent.com/u/103144665?v=4" width=115><br><sub>Rio Ribeiro</sub>](https://github.com/rioribeirods)
+| :---: | :---: | :---: | :---: |
 
 # Conclusões 🎯
 Logo, conseguimos desenvolver, além de todas as habilidades com as ferramentas e com conteúdo passado, 
