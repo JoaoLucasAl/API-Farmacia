@@ -40,7 +40,7 @@ class RemediosD {
     });
   }
 
-  deleteRemedio(id) {
+  deleteRemedios(id) {
     return new Promise((resolve, reject) => {
       const query = `DELETE FROM REMEDIOS WHERE ID = (?)`;
 
