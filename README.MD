@@ -209,5 +209,5 @@ Esperamos demonstrar nosso desenvolvimento enquanto aprendizes e contribuir como
 
 
 # SLIDE
-[![](src\assets\print.png)](https://www.canva.com/design/DAFJlsXs8So/xf40aUMV7vZOI4ZfNrkAeA/edit?utm_content=DAFJlsXs8So&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)<br>
+[![](src/assets/print.png)](https://www.canva.com/design/DAFJlsXs8So/xf40aUMV7vZOI4ZfNrkAeA/edit?utm_content=DAFJlsXs8So&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)<br>
 Clique para acessar o slide ☝️
