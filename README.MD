@@ -41,7 +41,7 @@ no banco, com Promises;
   <p>
    ● Crie e Popule o Banco de Dados:
   <p>
- - npm run database
+ - npm run db-init
     <p>
    ● Execute o Projeto:
       <p>
