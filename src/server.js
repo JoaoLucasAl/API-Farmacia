@@ -4,7 +4,8 @@ import FuncionarioController from "./controllers/funcionarios.js";
 import RemediosController from "./controllers/remedios.js";
 import ClienteController from "./controllers/clientes.js";
 import VendasController from "./controllers/vendas.js";
-const cors = require("cors");
+import cors from "cors";
+// const cors = require("cors");
 
 const app = express();
 
